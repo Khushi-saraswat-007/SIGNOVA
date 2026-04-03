@@ -3,8 +3,13 @@ import numpy as np
 import cv2
 import os
 import time
-import mediapipe as mp
-from mediapipe.tasks import python as mp_python
+try:
+    import mediapipe as mp
+    import cv2
+    MEDIAPIPE_AVAILABLE = True
+except ImportError:
+    MEDIAPIPE_AVAILABLE = False
+    print("⚠️ MediaPipe not available — running in API-only mode")from mediapipe.tasks import python as mp_python
 from mediapipe.tasks.python import vision as mp_vision
 import torch
 import torch.nn as nn
