@@ -1,0 +1,30 @@
+# Python
+backend/venv310/
+backend/venv/
+backend/__pycache__/
+backend/app/__pycache__/
+backend/**/__pycache__/
+backend/signova.db
+*.pyc
+*.pyo
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# ML models — large files
+ai_model/data/
+ai_model/models/*.pkl
+ai_model/models/*.pt
+ai_model/models/*.h5
+ai_model/hand_landmarker.task
+
+# Env
+.env
+backend/.env
+frontend/.env.production
+
+# OS
+.DS_Store
+Thumbs.db
