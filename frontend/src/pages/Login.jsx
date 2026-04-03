@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function Login() {
   const [form,     setForm]     = useState({ email: '', password: '' })
@@ -16,7 +17,7 @@ export default function Login() {
     e.preventDefault()
     setLoading(true)
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/login', form)
+      const res = await axios.post(`${API}/api/auth/login`, form)
       login(res.data.user, res.data.token)
       toast.success('Welcome back!')
       navigate('/dashboard')

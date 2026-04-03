@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 export default function SignUp() {
   const [form,     setForm]     = useState({ name: '', email: '', password: '' })
@@ -28,7 +29,7 @@ export default function SignUp() {
     }
     setLoading(true)
     try {
-      const res = await axios.post('http://localhost:8000/api/auth/register', form)
+      const res = await axios.post(`${API}/api/auth/register`, form)
       login(res.data.user, res.data.token)
       toast.success('Account created! Welcome to Signova 🤟')
       navigate('/dashboard')
