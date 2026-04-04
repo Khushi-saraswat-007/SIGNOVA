@@ -62,7 +62,7 @@ export default function DashboardHome() {
         const [histRes, statusRes] = await Promise.all([
           axios.get(`${API}/api/history/user/${user.id}`,
             { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get('${API}/api/status').catch(() => ({ data: {} }))
+          axios.get(`${API}/api/status`).catch(() => ({ data: {} }))
         ])
         setHistory(histRes.data || [])
         setAiStatus({
