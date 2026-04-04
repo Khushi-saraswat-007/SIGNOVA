@@ -20,13 +20,6 @@ app = FastAPI(
     version="2.0.0"
 )
 
-# ── CORS Middleware ───────────────────────────────────────────────────────────
-ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://signova-vert.vercel.app",
-    "https://*.vercel.app",
-]
 
 # ── CORS Middleware ───────────────────────────────────────────────────────────
 ALLOWED_ORIGINS = [
@@ -34,6 +27,9 @@ ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://signova-vert.vercel.app",
     "https://*.vercel.app",
+    "https://unmetallurgic-congruously-raguel.ngrok-free.dev", 
+    "https://*.ngrok-free.app", 
+
 ]
 
 class CORSMiddlewareCustom(BaseHTTPMiddleware):
