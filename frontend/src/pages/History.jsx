@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const typeConfig = {
   detection:    { icon: '🎥', label: 'Live Detection', color: '#0066ff', bg: 'rgba(0,102,255,0.06)',   border: 'rgba(0,102,255,0.2)'   },
@@ -60,7 +61,7 @@ export default function History() {
     try {
       const token = localStorage.getItem('token')
       const res   = await axios.get(
-        `http://localhost:8000/api/history/user/${user.id}`,
+        `${API}/api/history/user/${user.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       setHistory(res.data || [])
@@ -79,7 +80,7 @@ export default function History() {
     setDeleting(id)
     try {
       const token = localStorage.getItem('token')
-      await axios.delete(`http://localhost:8000/api/history/${id}`,
+      await axios.delete(`${API}/api/history/${id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
       setHistory(prev => prev.filter(h => h.id !== id))

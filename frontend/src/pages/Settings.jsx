@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const DEFAULTS = {
   voiceOutput: true, voiceSpeed: 1, voicePitch: 1,
@@ -89,8 +90,8 @@ export default function Settings() {
     const fetchStatus = async () => {
       try {
         const [statusRes, histRes] = await Promise.all([
-          axios.get('http://localhost:8000/api/status'),
-          user?.id ? axios.get(`http://localhost:8000/api/history/user/${user.id}`,
+          axios.get('${API}/api/status'),
+          user?.id ? axios.get(`${API}/api/history/user/${user.id}`,
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
           : Promise.resolve({ data: [] })
         ])

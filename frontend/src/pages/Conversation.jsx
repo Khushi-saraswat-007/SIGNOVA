@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { getSettings, speakText } from '../utils/settings'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const WS  = import.meta.env.VITE_WS_URL  || 'ws://localhost:8000'
 
 const PICTOGRAMS = {
   'are you okay':      { emoji: '🙋', word: 'You OK?'    },
@@ -122,7 +124,7 @@ export default function Conversation() {
         ? Math.max(1, Math.ceil((Date.now() - startTimeRef.current) / 60000))
         : 1
       await axios.post(
-        `http://localhost:8000/api/history/save?user_id=${user.id}`,
+        `${API}/api/history/save?user_id=...`,
         {
           session_name:   'Conversation Session',
           detected_signs: signs.join(','),
@@ -152,7 +154,7 @@ export default function Conversation() {
       signsRef.current = []
       startTimeRef.current = Date.now()
 
-      wsRef.current = new WebSocket('ws://localhost:8000/ws/detect')
+      wsRef.current = new WebSocket('${WS}/ws/detect')
       setWsStatus('connecting')
 
       wsRef.current.onopen = () => {
