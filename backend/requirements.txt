@@ -10,7 +10,7 @@ ecdsa==0.19.2
 email-validator==2.2.0
 fastapi==0.115.0
 filelock==3.16.1
-flatbuffers==25.9.0
+flatbuffers==25.9.23
 fsspec==2024.10.0
 h11==0.14.0
 idna==3.10
