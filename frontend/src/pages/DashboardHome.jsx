@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import axios from 'axios'
+const API = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const TIPS = [
   "Show your hand clearly in good lighting for best detection accuracy.",
@@ -59,9 +60,9 @@ export default function DashboardHome() {
       try {
         const token = localStorage.getItem('token')
         const [histRes, statusRes] = await Promise.all([
-          axios.get(`http://localhost:8000/api/history/user/${user.id}`,
+          axios.get(`${API}/api/history/user/${user.id}`,
             { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get('http://localhost:8000/api/status').catch(() => ({ data: {} }))
+          axios.get('${API}/api/status').catch(() => ({ data: {} }))
         ])
         setHistory(histRes.data || [])
         setAiStatus({
