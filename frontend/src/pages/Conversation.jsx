@@ -124,7 +124,7 @@ export default function Conversation() {
         ? Math.max(1, Math.ceil((Date.now() - startTimeRef.current) / 60000))
         : 1
       await axios.post(
-        `${API}/api/history/save?user_id=...`,
+        `${API}/api/history/save?user_id=${user.id}`,
         {
           session_name:   'Conversation Session',
           detected_signs: signs.join(','),
@@ -153,8 +153,7 @@ export default function Conversation() {
       // Reset signs tracker
       signsRef.current = []
       startTimeRef.current = Date.now()
-
-      wsRef.current = new WebSocket('${WS}/ws/detect')
+      wsRef.current = new WebSocket(`${WS}/ws/detect`)
       setWsStatus('connecting')
 
       wsRef.current.onopen = () => {
