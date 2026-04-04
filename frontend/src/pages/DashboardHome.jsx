@@ -64,7 +64,7 @@ export default function DashboardHome() {
             { headers: { Authorization: `Bearer ${token}` } }),
           axios.get(`${API}/api/status`).catch(() => ({ data: {} }))
         ])
-        setHistory(histRes.data || [])
+        setHistory(Array.isArray(histRes.data) ? histRes.data : [])
         setAiStatus({
           rf:        statusRes.data?.rf_model_loaded   || false,
           lstm:      statusRes.data?.lstm_model_loaded || false,
