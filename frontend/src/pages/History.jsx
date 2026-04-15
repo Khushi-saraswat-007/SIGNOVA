@@ -47,7 +47,6 @@ export default function History() {
   const { user }    = useAuth()
   const location    = useLocation()
   const [history,   setHistory]  = useState([])
-  
   const [loading,   setLoading]  = useState(true)
   const [filter,    setFilter]   = useState('All')
   const [selected,  setSelected] = useState(null)
@@ -65,8 +64,7 @@ export default function History() {
         `${API}/api/history/user/${user.id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
-      setHistory(Array.isArray(histRes.data) ? histRes.data : [])
-
+      setHistory(Array.isArray(res.data) ? res.data : [])
     } catch {
       toast.error('Failed to load history')
     } finally {
