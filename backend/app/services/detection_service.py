@@ -53,6 +53,13 @@ class DetectionService:
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(
                    os.path.dirname(os.path.abspath(__file__)))))
 
+        # Auto-correct if ai_model not found (Render deployment)
+        if not os.path.exists(os.path.join(BASE_DIR, "ai_model")):
+            BASE_DIR = os.path.dirname(BASE_DIR)
+
+        print(f"📁 BASE_DIR: {BASE_DIR}")
+        print(f"📁 ai_model exists: {os.path.exists(os.path.join(BASE_DIR, 'ai_model'))}")
+
         # ── Load MediaPipe ────────────────────────────────────────────
         try:
             MODEL_PATH   = os.path.join(BASE_DIR, "ai_model", "hand_landmarker.task")
@@ -85,6 +92,7 @@ class DetectionService:
                 print("✅ RF Sign Model loaded successfully!")
             else:
                 print("⚠️  No RF model found — run train_model.py first!")
+                print(f"   Looking at: {model_path}")
         except Exception as e:
             print(f"⚠️  RF Model error: {e}")
 
@@ -114,6 +122,7 @@ class DetectionService:
                 print("✅ LSTM Sentence Model loaded successfully!")
             else:
                 print("⚠️  No LSTM model found — run train_lstm.py first!")
+                print(f"   Looking at: {lstm_path}")
         except Exception as e:
             print(f"⚠️  LSTM Model error: {e}")
 
