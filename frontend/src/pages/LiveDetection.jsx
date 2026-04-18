@@ -116,7 +116,7 @@ export default function LiveDetection() {
       const confidenceThreshold = s.confidenceThreshold / 100
       const detectionSpeed      = s.detectionSpeed
 
-      wsRef.current = new WebSocket('${WS}/ws/detect')
+      wsRef.current = new WebSocket(`${WS}/ws/detect`)
       wsRef.current.onopen = () => {
         setWsStatus('connected'); setDetecting(true)
         startTimeRef.current = Date.now()
