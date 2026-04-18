@@ -15,10 +15,7 @@ frontend/.env.local
 
 # ML models — large files
 ai_model/data/
-ai_model/models/*.pkl
-ai_model/models/*.pt
-ai_model/models/*.h5
-ai_model/hand_landmarker.task
+
 
 # Env
 .env
