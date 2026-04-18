@@ -92,7 +92,7 @@ export default function LiveDetection() {
       const durationMin = Math.max(1, Math.ceil(durationMs / 60000))
 
       await axios.post(
-        `${API}/api/history/save?user_id=...`,
+        `${API}/api/history/save?user_id=${user.id}`,
         {
           session_name:   sessionName,
           detected_signs: signs,
