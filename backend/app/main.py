@@ -52,6 +52,7 @@ def root():
 
 # ── Model status endpoint ─────────────────────────────────────────────────────
 @app.get("/api/status")
+@app.head("/api/status")
 def status():
     return {
         "rf_model_loaded":   detector.model_loaded,
