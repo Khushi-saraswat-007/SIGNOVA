@@ -21,4 +21,4 @@ WORKDIR /app
 COPY . .
 RUN pip install -r backend/requirements.txt
 
-CMD cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+CMD cd backend && uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
