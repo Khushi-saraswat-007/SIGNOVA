@@ -10,7 +10,12 @@ RUN apt-get update && apt-get install -y \
     libegl1 \
     libglvnd0 \
     libglx0 \
+    libgl1-mesa-glx \
+    libgles2-mesa \
     && rm -rf /var/lib/apt/lists/*
+
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libGLESv2.so.2 /usr/lib/libGLESv2.so.2 || true
+RUN ln -sf /usr/lib/x86_64-linux-gnu/libEGL.so.1 /usr/lib/libEGL.so.1 || true
 
 WORKDIR /app
 COPY . .
